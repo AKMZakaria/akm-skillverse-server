@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect()
+    // await client.connect()
 
     const db = client.db('akm_skillverse')
     const coureseColl = db.collection('courses')
@@ -63,7 +63,7 @@ async function run() {
       res.send(result)
     })
 
-    app.patch('/courses/:id', async (req, res) => {
+    app.patch('/myaddedcourses/:id', async (req, res) => {
       const id = req.params.id
       const query = { _id: new ObjectId(id) }
       const updatedCourse = req.body
@@ -73,6 +73,31 @@ async function run() {
       const result = await coureseColl.updateOne(query, update)
       res.send(result)
     })
+
+    // app.patch('/myaddedcourses/:id', async (req, res) => {
+    //   const id = req.params.id
+    //   const query = { _id: new ObjectId(id) }
+    //   const updatedCourse = req.body
+
+    //   try {
+    //     const updateDoc = {
+    //       $set: {
+    //         title: updatedCourse.title,
+    //         image_url: updatedCourse.image_url,
+    //         price: updatedCourse.price,
+    //         duration: updatedCourse.duration,
+    //         category: updatedCourse.category,
+    //         description: updatedCourse.description,
+    //       },
+    //     }
+
+    //     const result = await coursesColl.updateOne(query, updateDoc)
+    //     res.send(result)
+    //   } catch (error) {
+    //     console.error('Error updating course:', error)
+    //     res.status(500).send({ error: 'Failed to update course' })
+    //   }
+    // })
 
     app.delete('/myaddedcourses/:id', async (req, res) => {
       const id = req.params.id
@@ -111,7 +136,7 @@ async function run() {
     })
 
     // Send a ping to confirm a successful connection
-    await client.db('admin').command({ ping: 1 })
+    // await client.db('admin').command({ ping: 1 })
     console.log('Pinged your deployment. You successfully connected to MongoDB!')
   } finally {
     // Ensures that the client will close when you finish/error
