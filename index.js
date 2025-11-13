@@ -39,6 +39,7 @@ async function run() {
       res.send(result)
     })
 
+    // get my added courses
     app.get('/myaddedcourses', async (req, res) => {
       const email = req.query.email
       const query = {}
