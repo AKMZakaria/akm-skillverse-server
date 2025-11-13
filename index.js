@@ -126,6 +126,7 @@ async function run() {
       res.send(result)
     })
 
+    // get enrolled courses
     app.get('/enrolled', async (req, res) => {
       const email = req.query.email
       const query = email ? { email } : {}
@@ -134,6 +135,7 @@ async function run() {
       res.send(result)
     })
 
+    // delete enrolled course by id
     app.delete('/enrolled/:id', async (req, res) => {
       const id = req.params.id
       const query = { _id: new ObjectId(id) }
