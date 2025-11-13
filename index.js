@@ -60,6 +60,7 @@ async function run() {
       res.send(result)
     })
 
+    // post courses
     app.post('/courses', async (req, res) => {
       const newCourse = req.body
       const result = await coureseColl.insertOne(newCourse)
