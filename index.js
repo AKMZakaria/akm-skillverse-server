@@ -32,6 +32,7 @@ async function run() {
     const coureseColl = db.collection('courses')
     const enrolledColl = db.collection('enrolledCourses')
 
+    // get all courses
     app.get('/courses', async (req, res) => {
       const cursor = coureseColl.find().sort({ price: 1 })
       const result = await cursor.toArray()
